@@ -2,7 +2,11 @@
 <html lang="es">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <!-- Etiquetas para forzar comportamiento de App nativa -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Pokémon Amarillo</title>
     <style>
         body, html { margin: 0; padding: 0; height: 100%; background-color: black; overflow: hidden; }
@@ -21,5 +25,16 @@
         window.EJS_startOnLoaded = true; 
     </script>
     <script src="https://cdn.emulatorjs.org/latest/data/loader.js"></script>
+    
+    <!-- Script para activar Pantalla Completa al primer toque -->
+    <script>
+        document.addEventListener('touchstart', function() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    console.log("No se pudo iniciar pantalla completa.");
+                });
+            }
+        }, { once: true }); // El "once: true" asegura que solo se ejecute en el primer toque
+    </script>
 </body>
 </html>
